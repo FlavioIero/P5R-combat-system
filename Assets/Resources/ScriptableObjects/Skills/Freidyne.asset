@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a90ddf62eb1e1f4fa2b5497d35164e6, type: 3}
+  m_Name: Freidyne
+  m_EditorClassIdentifier: Assembly-CSharp::Skills.SkillData
+  Name: Freidyne
+  Description: A powerful single target nuclear attack.
+  Resources:
+    HP: 0
+    MP: 12
+  TargetResolver:
+    rid: 4903852028750987468
+  Effects:
+  - rid: 4903852028750987469
+  - rid: 4903852028750987472
+  references:
+    version: 2
+    RefIds:
+    - rid: 4903852028750987468
+      type: {class: SingleTargetResolver, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 4903852028750987469
+      type: {class: SE_SetAttack, ns: Skills.Effects, asm: Assembly-CSharp}
+      data:
+        _attackData:
+          Damage: 10
+          CritRate: 0
+          CritDamage: 0
+          Element:
+            rid: 4903852028750987470
+          Reflections: 0
+          Reflected: 0
+          Blocked: 0
+          Absorbed: 0
+    - rid: 4903852028750987470
+      type: {class: Nuclear, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 4903852028750987472
+      type: {class: SE_Attack, ns: Skills.Effects, asm: Assembly-CSharp}
+      data: 

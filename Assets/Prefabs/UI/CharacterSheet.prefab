@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 8681714517964486037}
   - component: {fileID: 7456728756158664193}
   m_Layer: 5
-  m_Name: FaceImage
+  m_Name: CharacterImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -608,7 +608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3199964692887597420, guid: 4e1f7cea006483541832698ae750b89e, type: 3}
       propertyPath: m_Name
-      value: CharacterSheet Variant
+      value: CharacterSheet
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

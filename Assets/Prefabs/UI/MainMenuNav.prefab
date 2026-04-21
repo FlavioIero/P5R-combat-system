@@ -90,7 +90,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3199964692887597420, guid: 4e1f7cea006483541832698ae750b89e, type: 3}
       propertyPath: m_Name
-      value: MainMenuNav Variant
+      value: MainMenuNav
+      objectReference: {fileID: 0}
+    - target: {fileID: 3199964692887597420, guid: 4e1f7cea006483541832698ae750b89e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

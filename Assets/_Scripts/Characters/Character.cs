@@ -9,6 +9,7 @@ public class Character : DamageEntity
 {
     // PUBLIC VARIABLES
     public string Name = "";
+    public string Arcana = "";
     public Resources Resources;
 
     [Space, Header("Debug")]

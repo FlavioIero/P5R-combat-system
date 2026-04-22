@@ -81,7 +81,6 @@ public class Character : DamageEntity
     private Health _health;
 
     // EVENTS
-    public static event Action<Character> OnStart;
     public static event Action<Character> OnActivated;
     public static event Action<Character> OnDeactivated;
     public static event Action<Character> OnTurnStarted;
@@ -116,8 +115,6 @@ public class Character : DamageEntity
             _originalColor = gameObject.GetComponent<SpriteRenderer>().color;
         }
         catch { }
-
-        OnStart?.Invoke(this);
     }
 
     private void Update()

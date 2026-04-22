@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class CharacterSheet : MonoBehaviour
+public class AllySheet : MonoBehaviour
 {
     [Serializable]
     private class Aspect
@@ -16,7 +16,7 @@ public class CharacterSheet : MonoBehaviour
     }
 
     // PUBLIC VARIABLES
-    [HideInInspector] public int CharacterID;
+    [HideInInspector] public Character Ally;
 
     [SerializeField] private Aspect _selectedAspect;
 
@@ -33,7 +33,8 @@ public class CharacterSheet : MonoBehaviour
     private Aspect _originalAspect = new();
 
     // EVENTS
-    public static event Action<int> OnCharacterSelected;
+    public static event Action<Character> OnAllySelected;
+
 
     private void Awake()
     {
@@ -43,15 +44,18 @@ public class CharacterSheet : MonoBehaviour
         _originalAspect.BackgroundImage = _backgroundImage.sprite;
     }
 
-    public void Initialize(int characterID)
+    public void Initialize(Character ally)
     {
-        CharacterID = characterID;
+        Ally = ally;
+        _name.text = Ally.Name;
+        _arcana.text = Ally.Arcana;
+        // image!!!!
     }
 
     public void OnButtonClicked()
     {
         Debug.Log("ButtonClicked");
-        OnCharacterSelected?.Invoke(CharacterID);
+        OnAllySelected?.Invoke(Ally);
         _selected = !_selected;
         if (_selected )
             ChangeAspect(_selectedAspect);

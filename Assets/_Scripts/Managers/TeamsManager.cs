@@ -5,15 +5,36 @@ using System.Collections.Generic;
 
 public class TeamsManager : MonoBehaviour
 {
+    [Serializable]
+    private class AllyState_Serialized
+    {
+        public Character Ally;
+        public AllyState State = new();
+    }
+
+    [Serializable]
+    private class AllyState
+    {
+        public bool Unlocked = true;
+        [HideInInspector] public bool Selected = false;
+        [HideInInspector] public bool ActiveTurn = false;
+    }
+
+
     public static TeamsManager Instance;
 
-    // this is garbage and it's temporary, just to test stuff
     public const int MAX_ACTIVE_ALLIES = 4;
-    public List<Character> Allies = new();
-    public List<Character> ActiveAllies = new();
-    public List<DamageEntity> Enemies = new();
-    
+
+    // used only to create a dictionary, do not reference this otherwise
+    [SerializeField] private List<AllyState_Serialized> _alliesStatesInspector = new();
+    [SerializeField] private List<Character> _enemies = new();
+
+    [Header("Debug")]
     public int _turnIdx = 0;
+
+    private List<Character> _activeAllies = new();
+    private List<Character> _activeEnemies = new();
+    private Dictionary<Character, AllyState> _alliesStates = new();
 
 
     private void Awake()
@@ -22,37 +43,53 @@ public class TeamsManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-        Character.OnStart += Ally_OnEnabled;
-        Character.OnTurnEnded += Ally_OnTurnEnded;
- 
+
+        foreach (var state in _alliesStatesInspector)
+        {
+            _alliesStates[state.Ally] = state.State;
+        }
     }
 
     private void OnEnable()
     {
-        
+        Character.OnTurnEnded += Ally_OnTurnEnded;
+        AllySheet.OnAllySelected += OnAllySelected;
     }
 
     private void OnDisable()
     {
-
+        Character.OnTurnEnded -= Ally_OnTurnEnded;
+        AllySheet.OnAllySelected -= OnAllySelected;
     }
 
-    private void Start()
+    private void OnAllySelected(Character ally)
     {
-        
-    }
-
-    private void Ally_OnEnabled(Character character)
-    {
-        if (character.Team != Team.Good)
+        if (ally.Team != Team.Good)
             return;
 
-        Allies.Add(character);
-        if (ActiveAllies.Count < MAX_ACTIVE_ALLIES)
-            ActiveAllies.Add(character);
+        _activeAllies.Add(ally);
+        if (_activeAllies.Count < MAX_ACTIVE_ALLIES)
+            _activeAllies.Add(ally);
 
-        ActiveAllies[_turnIdx].ThisTurn = true;
+        _alliesStates[ally].Selected = true;
+
+        // temp
+        _activeAllies[_turnIdx].ThisTurn = true;
     }
+
+    #region getters
+    public List<Character> GetUnlockedAllies()
+    {
+        List<Character> allies = new();
+        foreach (var state in _alliesStates)
+        {
+            if (state.Value.Unlocked)
+                allies.Add(state.Key);
+        }
+
+        return allies;
+    }
+    #endregion
 
     private void Ally_OnTurnEnded(Character character)
     {
@@ -63,14 +100,14 @@ public class TeamsManager : MonoBehaviour
     {
         yield return null; 
 
-        if (ActiveAllies.Count == 0)
+        if (_activeAllies.Count == 0)
             yield break;
 
-        foreach (var a in ActiveAllies)
+        foreach (var a in _activeAllies)
             a.ThisTurn = false;
 
-        _turnIdx = (_turnIdx + 1) % ActiveAllies.Count;
+        _turnIdx = (_turnIdx + 1) % _activeAllies.Count;
 
-        ActiveAllies[_turnIdx].ThisTurn = true;
+        _activeAllies[_turnIdx].ThisTurn = true;
     }
 }

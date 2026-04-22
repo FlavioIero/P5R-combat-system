@@ -1,17 +1,18 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 
 public class CharacterSheet : MonoBehaviour
 {
+    [Serializable]
     private class Aspect
     {
         public Color NameColor;
         public Color ArcanaColor;
         public Color BackgroundColor;
-        public Texture BackgroundImage;
+        public Sprite BackgroundImage;
     }
 
     // PUBLIC VARIABLES
@@ -20,8 +21,9 @@ public class CharacterSheet : MonoBehaviour
     [SerializeField] private Aspect _selectedAspect;
 
     // REFERENCES
-    [SerializeField] private TextMeshPro _name;
-    [SerializeField] private TextMeshPro _arcana;
+    [Header("References")]
+    [SerializeField] private TextMeshProUGUI _name;
+    [SerializeField] private TextMeshProUGUI _arcana;
     [SerializeField] private Image _backgroundImage;
     [SerializeField] private Button _button;
     [SerializeField] private Image _characterImage;
@@ -35,12 +37,10 @@ public class CharacterSheet : MonoBehaviour
 
     private void Awake()
     {
-        _button.clicked += OnButtonClicked;
-
         _originalAspect.NameColor = _name.color;
         _originalAspect.ArcanaColor = _arcana.color;
-        _originalAspect.BackgroundColor = _backgroundImage.tintColor;
-        _originalAspect.BackgroundImage = _backgroundImage.image;
+        _originalAspect.BackgroundColor = _backgroundImage.color;
+        _originalAspect.BackgroundImage = _backgroundImage.sprite;
     }
 
     public void Initialize(int characterID)
@@ -48,8 +48,9 @@ public class CharacterSheet : MonoBehaviour
         CharacterID = characterID;
     }
 
-    private void OnButtonClicked()
+    public void OnButtonClicked()
     {
+        Debug.Log("ButtonClicked");
         OnCharacterSelected?.Invoke(CharacterID);
         _selected = !_selected;
         if (_selected )
@@ -62,8 +63,8 @@ public class CharacterSheet : MonoBehaviour
     {
         _name.color = aspect.NameColor;
         _arcana.color = aspect.ArcanaColor;
-        _backgroundImage.tintColor = aspect.BackgroundColor;
-        _backgroundImage.image = aspect.BackgroundImage ?? _backgroundImage.image;
+        _backgroundImage.color = aspect.BackgroundColor;
+        _backgroundImage.sprite = aspect.BackgroundImage ?? _backgroundImage.sprite;
     }
 
 }

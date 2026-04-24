@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class AllySelectionManager : MonoBehaviour
@@ -24,6 +25,7 @@ public class AllySelectionManager : MonoBehaviour
     private void Start()
     {
         List<Character> allies = TeamsManager.Instance.GetUnlockedAllies();
+
         foreach (var ally in allies)
         {
             CreateCharacterSheet(ally);

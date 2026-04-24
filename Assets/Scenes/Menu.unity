@@ -1350,14 +1350,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1972353703189802467, guid: 061a227da064a074d925182ad9566244, type: 3}
-      propertyPath: m_ChildForceExpandWidth
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1972353703189802467, guid: 061a227da064a074d925182ad9566244, type: 3}
-      propertyPath: m_ChildForceExpandHeight
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3087417188127281408, guid: 061a227da064a074d925182ad9566244, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1404,7 +1396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4258379597385343414, guid: 061a227da064a074d925182ad9566244, type: 3}
       propertyPath: m_Name
-      value: CharacterSelection
+      value: AllySelection
       objectReference: {fileID: 0}
     - target: {fileID: 4258379597385343414, guid: 061a227da064a074d925182ad9566244, type: 3}
       propertyPath: m_IsActive

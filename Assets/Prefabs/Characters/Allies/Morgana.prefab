@@ -42,15 +42,15 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 24f06717e5892d647a119630d3439993, type: 3}
     - target: {fileID: 6509549458391797763, guid: 7a5e3cf6c160fc24ea896a077b625f91, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.16664846
       objectReference: {fileID: 0}
     - target: {fileID: 6509549458391797763, guid: 7a5e3cf6c160fc24ea896a077b625f91, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.78113204
       objectReference: {fileID: 0}
     - target: {fileID: 6509549458391797763, guid: 7a5e3cf6c160fc24ea896a077b625f91, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6509549458391797763, guid: 7a5e3cf6c160fc24ea896a077b625f91, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -58,15 +58,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7827501916008217452, guid: 7a5e3cf6c160fc24ea896a077b625f91, type: 3}
       propertyPath: m_Name
-      value: Morgana Variant
+      value: Morgana
       objectReference: {fileID: 0}
     - target: {fileID: 8886166913950957008, guid: 7a5e3cf6c160fc24ea896a077b625f91, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8886166913950957008, guid: 7a5e3cf6c160fc24ea896a077b625f91, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.93
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8886166913950957008, guid: 7a5e3cf6c160fc24ea896a077b625f91, type: 3}
       propertyPath: m_LocalPosition.z

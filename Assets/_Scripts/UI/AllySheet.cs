@@ -28,12 +28,32 @@ public class AllySheet : MonoBehaviour
     [SerializeField] private Button _button;
     [SerializeField] private Image _characterImage;
 
-    // PRIVATE VARIABLES
     private bool _selected = false;
+    public bool Selected
+    {
+        get => _selected;
+        set
+        {
+            if (_selected == value)
+                return;
+            _selected = value;
+            if (_selected)
+            {
+                ChangeAspect(_selectedAspect);
+                OnAllySelected?.Invoke(Ally);
+            }
+            else
+            {
+                ChangeAspect(_originalAspect);
+                OnAllyDeselected?.Invoke(Ally);
+            }
+        }
+    }
     private Aspect _originalAspect = new();
 
     // EVENTS
     public static event Action<Character> OnAllySelected;
+    public static event Action<Character> OnAllyDeselected;
 
 
     private void Awake()
@@ -54,13 +74,7 @@ public class AllySheet : MonoBehaviour
 
     public void OnButtonClicked()
     {
-        Debug.Log("ButtonClicked");
-        OnAllySelected?.Invoke(Ally);
-        _selected = !_selected;
-        if (_selected )
-            ChangeAspect(_selectedAspect);
-        else 
-            ChangeAspect(_originalAspect);
+        Selected = !Selected;
     }
 
     private void ChangeAspect(Aspect aspect)

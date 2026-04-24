@@ -16,7 +16,6 @@ namespace Skills
             Data = UnityEngine.Object.Instantiate(Data);
         }
 
-
         public void Use(DamageEntity source, DamageEntity selectedTarget)
         {
             var targetingContext = new TargetingContext

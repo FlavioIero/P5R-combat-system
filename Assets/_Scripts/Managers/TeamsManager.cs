@@ -36,13 +36,23 @@ public class TeamsManager : MonoBehaviour
     private List<Character> _activeEnemies = new();
     private Dictionary<Character, AllyState> _alliesStates = new();
 
+    // EVENTS
+    public event Action<List<Character>> OnSelectedAlliesChanged;
+    public event Action<List<Character>> OnActiveAlliesChanged;
+    public event Action<List<Character>> OnActiveEnemiesChanged;
+
 
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
+        {
             Destroy(gameObject);
+        }
 
         foreach (var state in _alliesStatesInspector)
         {
@@ -54,12 +64,14 @@ public class TeamsManager : MonoBehaviour
     {
         Character.OnTurnEnded += Ally_OnTurnEnded;
         AllySheet.OnAllySelected += OnAllySelected;
+        AllySheet.OnAllyDeselected += OnAllyDeselected;
     }
 
     private void OnDisable()
     {
         Character.OnTurnEnded -= Ally_OnTurnEnded;
         AllySheet.OnAllySelected -= OnAllySelected;
+        AllySheet.OnAllyDeselected += OnAllyDeselected;
     }
 
     private void OnAllySelected(Character ally)
@@ -73,8 +85,25 @@ public class TeamsManager : MonoBehaviour
 
         _alliesStates[ally].Selected = true;
 
+        Debug.Log("Selected allies: " + GetSelectedAllies().Count);
+        OnSelectedAlliesChanged?.Invoke(GetSelectedAllies());
+        Debug.Log("Selected allies: " + GetSelectedAllies().Count);
+
         // temp
         _activeAllies[_turnIdx].ThisTurn = true;
+    }
+
+    private void OnAllyDeselected(Character ally)
+    {
+        if (ally.Team != Team.Good)
+            return;
+
+        _activeAllies.Remove(ally);
+        _alliesStates[ally].Selected = false;
+
+        Debug.Log("Selected allies: " + GetSelectedAllies().Count);
+        OnSelectedAlliesChanged?.Invoke(GetSelectedAllies());
+        Debug.Log("Selected allies: " + GetSelectedAllies().Count);
     }
 
     #region getters
@@ -87,6 +116,17 @@ public class TeamsManager : MonoBehaviour
                 allies.Add(state.Key);
         }
 
+        return allies;
+    }
+
+    public List<Character> GetSelectedAllies()
+    {
+        List<Character> allies = new();
+        foreach (var state in _alliesStates)
+        {
+            if (state.Value.Selected)
+                allies.Add(state.Key);
+        }
         return allies;
     }
     #endregion

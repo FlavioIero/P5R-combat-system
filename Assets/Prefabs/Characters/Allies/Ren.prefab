@@ -13,6 +13,10 @@ PrefabInstance:
       value: Ren Amamiya
       objectReference: {fileID: 0}
     - target: {fileID: 2338237920593092707, guid: 7a5e3cf6c160fc24ea896a077b625f91, type: 3}
+      propertyPath: Arcana
+      value: Fool
+      objectReference: {fileID: 0}
+    - target: {fileID: 2338237920593092707, guid: 7a5e3cf6c160fc24ea896a077b625f91, type: 3}
       propertyPath: TurnColor.b
       value: 0
       objectReference: {fileID: 0}
@@ -42,15 +46,15 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 2d57a58b2c45d3c4fb2b5ff7550a3388, type: 3}
     - target: {fileID: 6509549458391797763, guid: 7a5e3cf6c160fc24ea896a077b625f91, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6509549458391797763, guid: 7a5e3cf6c160fc24ea896a077b625f91, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6509549458391797763, guid: 7a5e3cf6c160fc24ea896a077b625f91, type: 3}
       propertyPath: m_Color.r
-      value: 0.4264151
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6509549458391797763, guid: 7a5e3cf6c160fc24ea896a077b625f91, type: 3}
       propertyPath: m_WasSpriteAssigned

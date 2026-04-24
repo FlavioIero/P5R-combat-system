@@ -55,6 +55,16 @@ MonoBehaviour:
       Unlocked: 1
       Selected: 0
       ActiveTurn: 0
+  - Ally: {fileID: 6320358189293120709, guid: a270ef5895308d04ea39b6e90ffeef06, type: 3}
+    State:
+      Unlocked: 1
+      Selected: 0
+      ActiveTurn: 0
+  - Ally: {fileID: 2977217326336237445, guid: 05d3ef89defcca144a176a47650d9aed, type: 3}
+    State:
+      Unlocked: 1
+      Selected: 0
+      ActiveTurn: 0
   _enemies:
   - {fileID: 5936377840978679973, guid: 6554851320bacf64dab2488e5117d0c8, type: 3}
   _turnIdx: 0
